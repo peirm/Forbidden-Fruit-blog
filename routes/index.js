@@ -34,7 +34,7 @@ function isLogin (req,res,next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
       res.render('web/index', {
-        title: 'coloo',
+        title: 'Forbidden Fruit',
           user:req.session.user
       });
 });

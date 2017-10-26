@@ -134,7 +134,7 @@ app.use(function(err, req, res, next) {
       error:err
   });
 });
-app.listen('4000',function () {
+app.listen('4040',function () {
   console.log('node is OK');
 });
 
