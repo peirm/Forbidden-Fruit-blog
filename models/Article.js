@@ -1,14 +1,14 @@
 /**
  * Created by mengjun on 2017/1/1.
  */
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var shortid = require('shortid');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const shortid = require('shortid');
 //引入事件格式化对象
-var moment = require('moment');
+const moment = require('moment');
 
 
-var ArticleSchema = new Schema ({
+const ArticleSchema = new Schema ({
     _id:{
         type:String,
         unique:true,
@@ -48,8 +48,8 @@ var ArticleSchema = new Schema ({
 });
 ArticleSchema.statics = {
     //更新评论数
-    updateCommentNum:function (articleId,key,callback) {
-        Article.findOne({'_id':articleId},'commentNum',function (err,doc) {
+    updateCommentNum:(articleId,key,callback) => {
+        Article.findOne({'_id':articleId},'commentNum',(err,doc) => {
             if(err) {
                 res.end(err)
             }
@@ -58,12 +58,12 @@ ArticleSchema.statics = {
             }else if (key === 'del') {
                 doc.commentNum = doc.commentNum -1;
             }
-            doc.save(function (err) {
+            doc.save(err => {
                 if(err) throw err;
                 callback();
             })
         })
     }
 }
-var Article = mongoose.model('Article',ArticleSchema);
+const Article = mongoose.model('Article',ArticleSchema);
 module.exports = Article;

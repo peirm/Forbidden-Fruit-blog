@@ -1,11 +1,11 @@
 /**
  * Created by mengjun on 2017/1/5.
  */
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var shortid = require('shortid');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const shortid = require('shortid');
 
-var CommentModel = new Schema({
+const CommentModel = new Schema({
     _id:{
         type:String,
         unique:true,
@@ -20,5 +20,5 @@ var CommentModel = new Schema({
     answerNum:{type:Number,default:0},
     answers:[]
 });
-var Comment = mongoose.model('Comment',CommentModel);
+const Comment = mongoose.model('Comment',CommentModel);
 module.exports = Comment;

@@ -1,12 +1,12 @@
 /**
  * Created by june on 2017/1/9.
  */
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var shortid = require('shortid');
-var moment = require('moment');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const shortid = require('shortid');
+const moment = require('moment');
 
-var SkinSchema = new Schema ({
+const SkinSchema = new Schema ({
     _id:{
         type:String,
         unique:true,
@@ -17,5 +17,5 @@ var SkinSchema = new Schema ({
     mainBgc:String
 });
 
-var Skin = mongoose.model('Skin',SkinSchema);
+const Skin = mongoose.model('Skin',SkinSchema);
 module.exports = Skin;

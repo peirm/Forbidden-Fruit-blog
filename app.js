@@ -1,31 +1,31 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
 //新增的功能
-var session = require('express-session');
+const session = require('express-session');
 //使用redis
 // var RedisStore = require('connect-redis')(session);
 //使用connect-mongo
-var MongoStore = require('connect-mongo')(session);
-var io = require('socket.io')();
-var fs = require('fs');
+const MongoStore = require('connect-mongo')(session);
+const io = require('socket.io')();
+const fs = require('fs');
 
-var moment = require('moment');
-var partials = require('express-partials');
+const moment = require('moment');
+const partials = require('express-partials');
 //系统功能支持
 // var system = require('./routes/system.js');
 //站点的配置
-var settings = require('./models/db/settings.js');
+const settings = require('./models/db/settings.js');
 //路由的加载
-var index = require('./routes/index');
-var users = require('./routes/users')(io);//用户登录注册需要io
+const index = require('./routes/index');
+const users = require('./routes/users')(io);//用户登录注册需要io
 //位置很重要，将filter放在路由后面
 // var filter = require('./util/filter.js');
-var app = express();
+const app = express();
 
 //设置模板引擎
 app.set('views', path.join(__dirname, 'views'));
@@ -83,30 +83,28 @@ app.use(session({
 
 //时间监听
 app.io = io;
-io.on('connection',function (socket) {
+io.on('connection',(socket) => {
   //socket.emit('news',{hello:'world};
   // socket.on('my other event',function (data) {
   //   console.log(data);
   // });
 });
 //数据格式化
-app.locals.myDateFormat = function (date) {
+app.locals.myDateFormat = (date) => {
   moment.locale('zh-cn');
   return moment(date).startOf('hour').fromNow();
 };
-app.locals.searchKeyword = function (content,key) {
-  var newContent = content;
+app.locals.searchKeyword = (content,key) => {
+  let newContent = content;
   if(newContent && key) {
-    var keyword = key.replace(/(^\s*)|(\s*$)/g,"");
+    let keyword = key.replace(/(^\s*)|(\s*$)/g,"");
     if(keyword != '') {
-      var reg = new RegExp(keyword,'gi');
+      let reg = new RegExp(keyword,'gi');
       newContent = content.replace(reg,'<span style="color:red">' + key + '</span>');
     }
   }
   return newContent;
 };
-
-
 
 //首页路由
 app.use('/', index);
@@ -116,14 +114,14 @@ app.use('/users', users);
 // app.use('/system',system);
 
 //捕获错误信息，进行处理
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // 错误处理
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -134,7 +132,8 @@ app.use(function(err, req, res, next) {
       error:err
   });
 });
-app.listen('4040',function () {
+
+app.listen(4040,() => {
   console.log('node is OK');
 });
 

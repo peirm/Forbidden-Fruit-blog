@@ -1,13 +1,13 @@
 /**
  * Created by june on 2016/12/30.
  */
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var shortid = require('shortid');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const shortid = require('shortid');
 //引入时间格式化对象
-var moment = require('moment');
+const moment = require('moment');
 
-var UserSchema = new Schema ({
+const UserSchema = new Schema ({
     _id:{
         type:String,
         unique:true,
@@ -45,5 +45,5 @@ var UserSchema = new Schema ({
     articlesNum:{type:Number,default:0},
     articlesIds:[]
 });
-var User = mongoose.model('User',UserSchema);
+const User = mongoose.model('User',UserSchema);
 module.exports = User;

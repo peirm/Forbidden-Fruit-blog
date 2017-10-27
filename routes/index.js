@@ -1,20 +1,20 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 //引入数据库操作文件
-var connect = require('../models/connect.js');
-var Article = require('../models/Article.js');
-var User = require('../models/User.js');
-var Comment = require('../models/Comment.js');
-var Skin = require('../models/Skin.js');
+const connect = require('../models/connect.js');
+const Article = require('../models/Article.js');
+const User = require('../models/User.js');
+const Comment = require('../models/Comment.js');
+const Skin = require('../models/Skin.js');
 //数据库操作的方法集合
-var Db = require('../models/db.js');
+const Db = require('../models/db.js');
 
-var url = require('url');
-var moment = require('moment');
+const url = require('url');
+const moment = require('moment');
 
-var upload = require('../models/upload.js');
-var fs = require('fs');
-var gm = require('gm');
+const upload = require('../models/upload.js');
+const fs = require('fs');
+const gm = require('gm');
 
 
 //检查用户是否登录
@@ -32,19 +32,19 @@ function isLogin (req,res,next) {
 }
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/',(req, res, next) => {
       res.render('web/index', {
         title: 'Forbidden Fruit',
           user:req.session.user
       });
 });
 //说说发布
-router.post('/talking',isLogined,function (req,res,next) {
+router.post('/talking',isLogined,(req,res,next) => {
     Db.addOneTalking(Article,User,req,res);
 });
 //根据参数获取一个用户的说说或日志
-router.get('/oneUser',function (req,res,next) {
-    Db.findArticlesByConditions(Article,{author:req.query.username,type:req.query.type},function (err,articles) {
+router.get('/oneUser',(req,res,next) => {
+    Db.findArticlesByConditions(Article,{author:req.query.username,type:req.query.type},(err,articles) => {
         if(err) {
             return res.end(err);
         }
@@ -52,26 +52,26 @@ router.get('/oneUser',function (req,res,next) {
     })
 });
 //日志发布页面
-router.get('/postDiary',function (req,res,next) {
+router.get('/postDiary',(req,res,next) => {
     res.render('web/diaryPost',{
         title:'日志发布',
         user:req.session.user
     })
 });
-router.post('/postDiary',function (req,res,next) {
+router.post('/postDiary',(req,res,next) => {
     Db.addOneDiary(Article,User,req,res);
 });
 //获取所有的说说和日志
-router.get('/allArticles',function (req,res,next) {
+router.get('/allArticles',(req,res,next) => {
     if(!req.query.by) {
-        Db.findArticlesByConditions(Article,{state:true},function (err,articles) {
+        Db.findArticlesByConditions(Article,{state:true},(err,articles) => {
             if(err) {
                 return res.end(err);
             }
             return res.json({success:'success',articles:articles});
         })
     }else if (req.query.by) {
-        Db.findArticlesByConditions(Article,{$or:[{type:req.query.by},{tags:req.query.by},{author:req.query.by},{type:req.query.type}],state:true},function (err,articles) {
+        Db.findArticlesByConditions(Article,{$or:[{type:req.query.by},{tags:req.query.by},{author:req.query.by},{type:req.query.type}],state:true},(err,articles) => {
             if(err) {
                 return res.end(err);
             }
@@ -80,7 +80,7 @@ router.get('/allArticles',function (req,res,next) {
     }
 });
 //获取所有的标签
-router.get('/allTags',function (req,res,next) {
+router.get('/allTags',(req,res,next) => {
     Db.getAllTags(Article,function (err,allTags) {
         if(err) {
             return res.end(err);
@@ -89,8 +89,8 @@ router.get('/allTags',function (req,res,next) {
     })
 });
 //获取最近的文章
-router.get('/recentArticles',function (req,res,next) {
-    Db.getRecentArticles(Article,function (err,recentArticles) {
+router.get('/recentArticles',(req,res,next) => {
+    Db.getRecentArticles(Article,(err,recentArticles) => {
         if(err) {
             return res.end(err);
         }
@@ -98,8 +98,8 @@ router.get('/recentArticles',function (req,res,next) {
     })
 });
 //记录文章阅读量
-router.get('/viewArticle',function (req,res,next) {
-    Db.viewArticle(Article,req.query._id,function (err,article) {
+router.get('/viewArticle',(req,res,next) => {
+    Db.viewArticle(Article,req.query._id,(err,article) => {
         if(err) {
             return res.end(err);
         }
@@ -108,9 +108,9 @@ router.get('/viewArticle',function (req,res,next) {
 });
 
 //文章收藏
-router.get('/collectArticle',isLogined,function (req,res,next) {
+router.get('/collectArticle',isLogined,(req,res,next) => {
     // console.log(req.query._id);
-    Db.collectArticle(Article,User,req.query._id,req.session.user._id,function (err,user,article) {
+    Db.collectArticle(Article,User,req.query._id,req.session.user._id,(err,user,article) => {
         if(err) {
             return res.end(err);
         }
@@ -119,8 +119,8 @@ router.get('/collectArticle',isLogined,function (req,res,next) {
     })
 });
 //文章转发
-router.get('/copyArticle',isLogined,function (req,res,next) {
-    Db.copyArticle(Article,User,req.query._id,req.session.user._id,function (err,user,article) {
+router.get('/copyArticle',isLogined,(req,res,next) => {
+    Db.copyArticle(Article,User,req.query._id,req.session.user._id,(err,user,article) => {
         if(err) {
             return res.end(err);
         }
@@ -129,8 +129,8 @@ router.get('/copyArticle',isLogined,function (req,res,next) {
     })
 });
 //文章点赞
-router.get('/likeArticle',isLogined,function (req,res,next) {
-    Db.likeArticle(Article,req.query._id,req.session.user._id,function (err,article) {
+router.get('/likeArticle',isLogined,(req,res,next) => {
+    Db.likeArticle(Article,req.query._id,req.session.user._id,(err,article) => {
         if(err) {
             return res.end(err);
         }
@@ -138,8 +138,8 @@ router.get('/likeArticle',isLogined,function (req,res,next) {
     })
 });
 //取消文章点赞
-router.get('/unlikeArticle',isLogined,function (req,res,next) {
-    Db.unlikeArticle(Article,req.query._id,req.session.user._id,function (err,article) {
+router.get('/unlikeArticle',isLogined,(req,res,next) => {
+    Db.unlikeArticle(Article,req.query._id,req.session.user._id,(err,article) => {
         if(err) {
             return res.end(err);
         }
@@ -147,8 +147,8 @@ router.get('/unlikeArticle',isLogined,function (req,res,next) {
     })
 });
 //发表文章评论
-router.post('/commentArticle',isLogined,function (req,res,next) {
-    Db.commentArticle(Article,User,Comment,req.body.article_id,req.session.user,req.body.comment,function (err,article,comments) {
+router.post('/commentArticle',isLogined,(req,res,next) => {
+    Db.commentArticle(Article,User,Comment,req.body.article_id,req.session.user,req.body.comment,(err,article,comments) => {
         if(err) {
             return res.end(err);
         }else {
@@ -157,8 +157,8 @@ router.post('/commentArticle',isLogined,function (req,res,next) {
     });
 });
 //获取一篇文章所有的评论
-router.get('/allComments',function (req,res,next) {
-    Db.findCommentsByConditions(Comment,{articleId:req.query.article_id},function (err,comments) {
+router.get('/allComments',(req,res,next) => {
+    Db.findCommentsByConditions(Comment,{articleId:req.query.article_id},(err,comments) => {
         if(err) {
             return res.end(err);
         }
@@ -166,8 +166,8 @@ router.get('/allComments',function (req,res,next) {
     })
 });
 //删除一篇文章
-router.get('/deleteArticle',isLogined,function (req,res,next) {
-    Db.deleteArticle(Article,User,Comment,req.query.article_id,req.session.user._id,function (err,state) {
+router.get('/deleteArticle',isLogined,(req,res,next) => {
+    Db.deleteArticle(Article,User,Comment,req.query.article_id,req.session.user._id,(err,state) => {
         if(err) {
             return res.end(err);
         }
@@ -175,15 +175,15 @@ router.get('/deleteArticle',isLogined,function (req,res,next) {
     })
 });
 //编辑一篇文章
-router.get('/editDiary',isLogined,function (req,res,next) {
+router.get('/editDiary',isLogined,(req,res,next) => {
      res.render('web/editDiary',{
          title:'日志编辑',
          user:req.session.user
      })
 });
 //获取一篇文章的信息
-router.get('/getOneArticle',function (req,res,next) {
-    Db.findArticleById(Article,req.query.article_id,function (err,article) {
+router.get('/getOneArticle',(req,res,next) => {
+    Db.findArticleById(Article,req.query.article_id,(err,article) => {
         if(err) {
             return res.end(err);
         }
@@ -191,8 +191,8 @@ router.get('/getOneArticle',function (req,res,next) {
     })
 });
 //保存文章的修改
-router.post('/saveEdit',function (req,res,next) {
-    Db.saveEditArticle(Article,req.body,function (err,article) {
+router.post('/saveEdit',(req,res,next) => {
+    Db.saveEditArticle(Article,req.body,(err,article) => {
         if(err) {
             return res.end(err);
         }
@@ -200,7 +200,7 @@ router.post('/saveEdit',function (req,res,next) {
     })
 });
 //文章详情
-router.get('/articleInfo',function (req,res,next) {
+router.get('/articleInfo',(req,res,next) => {
     res.render('web/articleInfo',{
         title:'COLOO:文章详情',
         user:req.session.suer
@@ -208,8 +208,8 @@ router.get('/articleInfo',function (req,res,next) {
 });
 
 //搜索文章
-router.get('/searchArticle',function (req,res,next) {
-    Db.searchArticle(Article,req.body.search,function (err,articles) {
+router.get('/searchArticle',(req,res,next) => {
+    Db.searchArticle(Article,req.body.search,(err,articles) => {
         if(err) {
             return res.end(err);
         }
@@ -222,19 +222,19 @@ router.get('/searchArticle',function (req,res,next) {
 
 
 //用户上传头像
-router.get('/uploadLogo',isLogined,function (req,res,next) {
+router.get('/uploadLogo',isLogined,(req,res,next) => {
     res.render('web/uploadLogo');
 });
 //用户头像上传
-router.post('/uploadLogo',upload.single('logo'),function (req,res,next) {
-    var src = 'public/upload/users/logos/small/' + req.file.filename;
+router.post('/uploadLogo',upload.single('logo'),(req,res,next) => {
+    let src = 'public/upload/users/logos/small/' + req.file.filename;
     gm(req.file.destination + req.file.filename)
         .resize(200,200,'!')
-        .write(src,function (err) {
+        .write(src,err => {
             if(err) {
                 console.log(err);
             }
-            Db.uploadLogo(User,Article,Comment,req,function (err,user) {
+            Db.uploadLogo(User,Article,Comment,req,(err,user) => {
                 if(err) {
                     return res.end(err);
                 }
@@ -262,12 +262,12 @@ router.post('/uploadLogo',upload.single('logo'),function (req,res,next) {
 });
 
 //新增一款皮肤
-router.get('/addSkin',function (req,res,next) {
+router.get('/addSkin',(req,res,next) => {
     res.render('web/addSkin');
 });
 //新增一款皮肤
-router.post('/addSkin',function (req,res,next) {
-    Db.addSkin(Skin,req,function (err,skin) {
+router.post('/addSkin',(req,res,next) => {
+    Db.addSkin(Skin,req,(err,skin) => {
         if(err) {
             return res.end(err);
         }
@@ -275,16 +275,16 @@ router.post('/addSkin',function (req,res,next) {
     });
 });
 //获取皮肤
-router.get('/getSkin',function (req,res,next) {
+router.get('/getSkin',(req,res,next) => {
     if(req.query.skin_id) {
-        Db.findSkinById(Skin,req.query.skin_id,function (err,skin) {
+        Db.findSkinById(Skin,req.query.skin_id,(err,skin) => {
             if(err) {
                 return res.end(err);
             }
             res.json({success:'success',skin:skin});
         })
     }else {
-        Db.findSkins(Skin,function (err,skins) {
+        Db.findSkins(Skin,(err,skins) => {
             if(err) {
                 return res.end(err);
             }
@@ -293,8 +293,8 @@ router.get('/getSkin',function (req,res,next) {
     }
 });
 //修改用户的皮肤信息
-router.post('/editUserSkin',function (req,res,next) {
-    Db.editUserSkin(User,req,function (err,user) {
+router.post('/editUserSkin',(req,res,next) => {
+    Db.editUserSkin(User,req,(err,user) => {
         if(err) {
             return res.end(err);
         }
@@ -302,8 +302,5 @@ router.post('/editUserSkin',function (req,res,next) {
         res.json({success:'success',user:user});
     })
 });
-
-
-
 
 module.exports = router;

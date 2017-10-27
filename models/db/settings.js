@@ -4,9 +4,9 @@
 module.exports = {
     debug:true,
     imgZip:true,
-    session_secret:'mjCMS_coloo',
-    auth_cookie_name:'mjCMS',
-    encrypto_key:'mj',
+    session_secret:'prm_ff',
+    auth_cookie_name:'prm',
+    encrypto_key:'prm',
     URL:'mongodb://localhost:27017/Forbidden',
     DB:'Forbidden Fruit',
     HOST:'',
@@ -21,5 +21,5 @@ module.exports = {
     //邮件设置
     //站点基础信息
     SITETITLE:'Forbidden Fruit心情社区',
-    SITEDOMAIN:'http://localhost:4000'   //站点域名
+    SITEDOMAIN:'http://localhost:4040'   //站点域名
 };
