@@ -1,6 +1,3 @@
-/**
- * Created by june on 2016/12/30.
- */
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const shortid = require('shortid');

@@ -1,6 +1,3 @@
-/**
- * Created by june on 2016/12/28.
- */
 //所有的数据库操作公共方法都放在这儿
 //引入url模块
 const url = require('url');
@@ -9,11 +6,11 @@ const crypto = require('crypto');
 //引入short-id模块
 const shortid = require('shortid');
 //引入数据库配置文件
-// var mongoose = require('mongoose');
-// var settings = require('./db/settings');
+// const mongoose = require('mongoose');
+// const settings = require('./db/settings');
 //引入mongoose配置文件
 //连接数据库开始
-// var db = mongoose.connect(settings.URL);
+// const db = mongoose.connect(settings.URL);
 //mongoose.connect('mongodb://localhost/27017')
 //时间格式化
 //文档格式化

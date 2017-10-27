@@ -1,6 +1,3 @@
-/**
- * Created by mengjun on 2017/1/9.
- */
 const fs = require('fs')
 const gm = require('gm');
 
