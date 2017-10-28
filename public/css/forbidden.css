@@ -1,0 +1,65 @@
+.navbar  {
+    box-shadow: 0px 0px 10px 2px lightblue inset;
+    line-height: 30px;
+    margin: auto;
+}
+.navbar-nav {
+    font-size: 22px;
+    margin: 10px 30px;
+}
+.navbar-nav li {
+    display: block;
+    padding-left: 25px;
+    margin:0 5px;
+}
+#navbar-biaotou a:hover {
+    background: #e7e7e7 !important;
+ }
+.navbar-header .navbar-brand{
+    font-family: 楷体;
+    margin: 10px;
+    font-size: 30px;
+    display: block;
+    width: 295px;
+}
+.navbar-form {
+    margin: 20px;
+}
+.navbar-form .input-group {
+    width: 255px;
+}
+.navbar-form .input-group .form-control {
+    border-radius: 5px;
+}
+.navbar-right {
+    margin-right: 5px;
+}
+#blank {
+    border: 1px solid red;
+}
+#blanks {
+    width: 80px;
+    border: 2px solid blue;
+    float: right;
+    margin-right: 10px;
+}
+#login {
+    outline: none;
+}
+#blank_login {
+    border: 2px solid blue;
+    margin-top: 60px;
+    width: 70px;
+    float: right;
+    margin-right: -135px;
+}
+#blank_reg {
+    border: 2px solid blue;
+    margin-top: 60px;
+    width: 70px;
+    float: right;
+    margin-right: -240px;
+}
+div {
+    border-radius: 8px;
+}

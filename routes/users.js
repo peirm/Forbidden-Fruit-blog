@@ -17,7 +17,7 @@ const moment = require('moment');
 const settings = require('../models/db/settings.js');
 const shortid = require('shortid');
 //系统相关操作
-//var system = require('../util/system.js')
+// const system = require('../util/system.js')
 //数据校检
 const filter = require('../util/filter.js')
 
@@ -36,7 +36,7 @@ function isLogin (req,res,next) {
 }
 
 /* GET users listing. */
-var returnUserRouter = (io) => {
+const returnUserRouter = (io) => {
   //用户信息页面
   router.get('/',(req, res, next) => {
       if(!(req.query.username)) {

@@ -11,8 +11,8 @@
     </div>
     <!--导航列表-->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">首页</a></li>
+      <ul class="nav navbar-nav" id="navbar-biaotou">
+        <li><a href="/">首页</a></li>
         <li><a href="javascript:void(0)" ng-click="getAllArticles('说说')">说说</a></li>
         <li><a href="javascript:void(0)" ng-click="getAllArticles('日志')">日志</a></li>
       </ul>
@@ -24,10 +24,12 @@
           </span>
         </div>
       </form>
-      <ul class="nav navbar-nav navbar-right">
-          <li ng-show="user"><a href="/users?username={{user.username}}">{{user.username}}</a></li>
-          <li  ng-show="user"><a href="javascript:void(0)" ng-click="logout()">退出</a></li>
-          <li  ng-show="user" class="dropdown">
+      <div id="blank"></div>
+      <div ng-show="user" id="blanks"></div>
+      <ul class="nav navbar-nav navbar-right" id="navbar-daohang">
+          <li ng-show="user"><a id="blank_aone" href="/users?username={{user.username}}">{{user.username}}</a></li>
+          <li  ng-show="user"><a id="blank_atwo" href="javascript:void(0)" ng-click="logout()">退出</a></li>
+          <li ng-show="user" class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="nav_user_img" ng-src="{{user.logo}}" alt=""> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                   <li><a href="/users/userInfo">个人信息</a></li>
@@ -37,10 +39,12 @@
                   <li><a href="javascript:void(0);" ng-click="logout()">退出</a></li>
               </ul>
           </li>
-          <li ng-hide="user"><a data-toggle="modal" data-target="#loginModal">登录</a></li>
+          <li ng-hide="user"><a id="login" href="" data-toggle="modal" data-target="#loginModal">登录</a></li>
           <%- include nav/loginModal.ejs %>
-          <li ng-hide="user"><a href="/users/register">注册</a></li>
+          <li ng-hide="user"><a id="reg" href="/users/register">注册</a></li>
       </ul>
+        <div ng-hide="user" id="blank_login" style="display: none"></div>
+        <div ng-hide="user" id="blank_reg" style="display: none"></div>
     </div>
   </div>
 </nav>

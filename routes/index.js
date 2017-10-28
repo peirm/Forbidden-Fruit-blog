@@ -202,7 +202,7 @@ router.post('/saveEdit',(req,res,next) => {
 //文章详情
 router.get('/articleInfo',(req,res,next) => {
     res.render('web/articleInfo',{
-        title:'COLOO:文章详情',
+        title:'文章详情',
         user:req.session.suer
     })
 });
