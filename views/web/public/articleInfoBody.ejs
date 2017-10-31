@@ -1,3 +1,4 @@
+<!-- 说说页面 -->
 <section>
     <img src="" alt="">
 </section>
@@ -18,7 +19,9 @@
             <div class="panel-body">
                 <form class="form-horizontal" name="commentForm" ng-submit="commentArticle(commentForm.$valid,article)" novalidate>
                     <div class="form-group padding_top">
-                        <label class="col-xs-2 control-label text-right comment_user_label"><img class="img-circle comment_user_logo" ng-src="{{user.logo || '/upload/users/logos/timg.png'}}" alt=""></label>
+                        <label class="col-xs-2 control-label text-right comment_user_label">
+                            <img class="img-circle comment_user_logo" ng-src="{{user.logo || '/upload/users/logos/timg.png'}}" alt="">
+                        </label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" name="comment" ng-model="commentFormData.comment" placeholder="评论一下吧" required autofocus>
                         </div>
@@ -38,7 +41,9 @@
                     <img class="img-rounded commenter_logo" ng-src="{{comment.commenterLogo}}" alt="">
                 </div>
                 <div class="col-xs-10">
-                    <p class="margin_bottom"><a href="/users?username={{comment.commenter}}">{{comment.commenter}}</a></p>
+                    <p class="margin_bottom">
+                        <a href="/users?username={{comment.commenter}}">{{comment.commenter}}</a>
+                    </p>
                     <p class="margin_bottom"><em am-time-ago="comment.commentTime"></em></p>
                     <p class="margin_bottom" ng-bind-html="comment.comment | to_trusted "></p>
                 </div>

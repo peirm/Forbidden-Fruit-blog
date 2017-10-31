@@ -63,3 +63,31 @@
 div {
     border-radius: 8px;
 }
+#ModalBackground{
+    background: #ff4500;
+    color: #ffffff;
+    font-size: 16px;
+}
+#ModalBackground:hover {
+    background: none;
+    color:#ff4500;
+}
+#ModalBackgrounds {
+    background: #ff4500;
+    color: #ffffff;
+    font-size: 25px;
+}
+#ModalBackgrounds:hover {
+    background: none;
+    color:#ff4500;
+}
+#ul_li li {
+    height: 18px;
+}
+#ul_li_login li {
+    margin-bottom: 10px;
+    height: 18px;
+}
+#ul_li_login li > p {
+    font-size: 14px;
+}

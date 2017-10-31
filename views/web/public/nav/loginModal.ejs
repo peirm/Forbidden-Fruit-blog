@@ -1,4 +1,5 @@
-<div class="modal fade" id="loginModal" tabindex="-1" >
+<!-- 登录 -->
+<div class="modal fade" id="loginModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content box_shadow_top">
             <div class="modal-header">
@@ -9,9 +10,15 @@
                 <!--<h1 class="text-center">账号登录</h1>-->
                 <form class="form-horizontal" name="loginForm" ng-submit="processLoginForm(loginForm.$valid)" novalidate>
                     <!--错误信息提示-->
-                    <p class="text-center text-danger" id="errorInfo">{{loginErrors}}</p>
-                    <!--账号-->
-                    <p class="text-center text-danger" ng-cloak ng-show="loginForm.email.$invalid && !loginForm.email.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请填写正确的邮箱</p>
+                    <ul id="ul_li_login">
+                        <li>
+                            <p class="text-center text-danger" id="errorInfo">{{loginErrors}}</p>
+                            <!--账号-->
+                            <p class="text-center text-danger" ng-cloak ng-show="loginForm.email.$invalid && !loginForm.email.$pristine">
+                                <i class="glyphicon glyphicon-info-sign"></i> 请填写正确的邮箱
+                            </p>
+                        </li>
+                    </ul>
                     <div class="form-group">
                         <label for="inputEmail" class="col-sm-2 col-sm-offset-1 control-label">账号:</label>
                         <div class="col-sm-6">
@@ -19,7 +26,13 @@
                         </div>
                     </div>
                     <!--密码-->
-                    <p class="text-center text-danger" ng-cloak  ng-show="loginForm.password.$invalid && !loginForm.password.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 6-12位，只能包含字母、数字和下划线</p>
+                    <ul id="ul_li_login">
+                        <li>
+                            <p class="text-center text-danger" ng-cloak ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">
+                                <i class="glyphicon glyphicon-info-sign"></i> 6-12位，只能包含字母、数字和下划线
+                            </p>
+                        </li>
+                    </ul>
                     <div class="form-group">
                         <label for="inputPassword" class="col-sm-2 col-sm-offset-1 control-label">密码:</label>
                         <div class="col-sm-6">
@@ -42,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <p>没有账号，请先<a href="/users/register">注册</a>后登录</p>
+                            <p>没有账号，请先<a id="ModalBackgrounds" href="/users/register">注册</a>后登录</p>
                         </div>
                     </div>
                 </form>

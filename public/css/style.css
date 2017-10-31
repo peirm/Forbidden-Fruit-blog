@@ -170,20 +170,24 @@ textarea {
 
 /*左边样式*/
 .list_left {
-  margin:10px ;
+  margin:10px;
 }
 .list_left a {
   text-align: center;
   display: block;
   line-height: 40px;
-  color: #444444;
+  margin-top: 5px;
+  font-size: 20px;
+  color: #CD1076;
 }
 .list_left a.active,
 .list_left a:hover {
   text-decoration: none;
   background-color: #fff;
     border-bottom: 1px solid orangered;
-    margin-bottom:-1px;
+    border-radius: 8px;
+    transition:all 1.1s ease;
+    color: #000000;
 }
 
 /*footer*/

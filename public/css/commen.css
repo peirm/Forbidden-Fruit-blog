@@ -1,4 +1,8 @@
 /*样式格式化*/
+body {
+    background:url(../upload/users/userBg/body_bg4.jpg) center top fixed;
+    min-height:1200px;
+}
 a {
     display: inline-block;
     text-decoration: none;
@@ -20,6 +24,7 @@ span {
     display: inline-block;
 }
 /*一些公共的样式*/
+
 /*------内边距------*/
 .none_padding {
     padding:0;

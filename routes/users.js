@@ -118,7 +118,7 @@ const returnUserRouter = (io) => {
     let password = req.body.password;
     let newPsd = Db.encrypt(password,settings.encrypto_key);
     if(!validator.isEmail(email)) {
-        errors = '邮箱格式不正确';
+        errors = '邮箱格式不正确或者用户名不存在';
     }
     if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA_Z]+$)(?!^[_#@]+$).{5,}/) || !validator.isLength(password,6,12)) {
       errors = '密码长度6-12个字符'
@@ -136,7 +136,7 @@ const returnUserRouter = (io) => {
             // console.log(req.session);
           res.end('success');
         }else {
-          res.end('用户名或密码错误');
+          res.end('邮箱或密码错误');
         }
       })
     }
