@@ -17,6 +17,6 @@ module.exports = {
     redis_db:0,
     //邮件设置
     //站点基础信息
-    SITETITLE:'Forbidden Fruit心情社区',
-    SITEDOMAIN:'http://localhost:4040'   //站点域名
+    SITETITLE:'Forbidden Fruit心情空间',
+    SITEDOMAIN:'http://localhost:4040'//站点域名
 };

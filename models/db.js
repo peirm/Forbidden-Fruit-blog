@@ -90,7 +90,6 @@ const DbSet = {
     },
 
     //下面是定义的一些方法
-
     //新增一篇说说
     addOneTalking:(Article,User,req,res) => {
         //实例化一个实体
@@ -210,7 +209,7 @@ const DbSet = {
         if(!conditions) {
             conditions = {};
         }
-        Article.find(conditions).sort({updateDate:-1}).exec((err,results) => {
+        Article.find(conditions).sort({updateDate:-1}).limit(10).exec((err,results) => {
             if(err) {
                 return callback(err);
             }
@@ -220,6 +219,21 @@ const DbSet = {
             callback(null,results);
         })
     },
+    // 加载全部文章
+    /*findAllArticlesByConditions:(Article,conditions,callback) => {
+        if(!conditions) {
+            conditions = {};
+        }
+        Article.find(conditions).sort({updateDate:-1}).exec((err,results) => {
+            if(err) {
+                return callback(err);
+            }
+            results.forEach(result => {
+                result.content = markdown.toHTML(result.content);
+            });
+            callback(null,results);
+        })
+    },*/
     //获取所有的标签
     getAllTags:(Article,callback) => {
         Article.find({},{tags:1}).sort({updateDate:-1}).exec((err,allTags) => {
@@ -363,9 +377,8 @@ const DbSet = {
                 })
             })
         });
-
     },
-    //模糊搜索文章
+    //搜索文章
     searchArticle:(Article,search,callback) => {
         Article.find({$or:[{author:{$regex:new RegExp(search)}},{title:{$regex:new RegExp(search)}},{tags:{$regex:new RegExp(search)}}]},(err,articles) => {
             if(err) {
@@ -439,7 +452,7 @@ const DbSet = {
             });
         })
     },
-    //分页
+
     //密码加密
     encrypt:(data,key) => {
         let cipher = crypto.createCipher('bf',key);
@@ -459,7 +472,7 @@ const DbSet = {
 
 
     //皮肤页面操作
-    //新增一款皮肤
+    //新增皮肤
     addSkin:(Skin,req,callback) => {
         let skinEntity = new Skin({
             bodyBg:req.body.bodyBg,

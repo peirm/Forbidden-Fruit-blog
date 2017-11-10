@@ -1,6 +1,3 @@
-/**
- * Created by june on 2016/12/30.
- */
 const webApp = angular.module('webApp',['angularMoment','userRegApp','userApp','diaryPostApp','editInfoApp','editDiaryApp','articleInfoApp']);
 webApp.run(function (amMoment) {
     amMoment.changeLocale('zh-cn');
@@ -73,7 +70,6 @@ webApp.controller('rootCtrl',function ($scope,$http) {
             }
         })
     }
-
 })
 //bodyCtrl控制器
     .controller('bodyCtrl',function ($scope,$http) {
@@ -245,7 +241,12 @@ webApp.controller('rootCtrl',function ($scope,$http) {
             }
         });
 
-        var isShow = '';
+        // 所有文章的分页
+        /*$('a.mainPage').click(function(event){
+            let targetA = event.target;
+            console.log(targetA)
+        })
+        var isShow = '';*/
         //显示文章内容
         $scope.contentShow = function (event,article) {
             if(isShow !== article._id) {
@@ -623,8 +624,8 @@ userApp.controller('userBodyCtrl',function ($scope,$http) {
         }).success(function (data) {
             $scope.articles = data;
         });
-
         let isShow = '';
+
         //显示文章内容
         $scope.contentShow = function (event,article) {
             if(isShow !== article._id) {

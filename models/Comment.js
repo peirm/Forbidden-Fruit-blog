@@ -12,9 +12,15 @@ const CommentModel = new Schema({
     commenter:String,
     commenterId:String,
     commenterLogo:String,
-    commentTime:{type:Date,default:Date.now},
+    commentTime:{
+        type:Date,
+        default:Date.now
+    },
     comment:String,
-    answerNum:{type:Number,default:0},
+    answerNum:{
+        type:Number,
+        default:0
+    },
     answers:[]
 });
 const Comment = mongoose.model('Comment',CommentModel);

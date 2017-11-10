@@ -8,7 +8,9 @@
                 <h3 style="margin: 10px 0;" class="text-center">日志发布</h3>
                 <p class="text-center text-danger" ng-cloak id="errorInfo">{{regErrors}}</p>
                 <!--日志标题-->
-                <p class="text-center text-danger" ng-cloak ng-show="diaryPostForm.title.$invalid && !diaryPostForm.title.$pristine"><i class="glyphicon glyphicon-info-sign"></i>请输入文章标题</p>
+                <div style="height: 20px">
+                    <p class="text-center text-danger" ng-cloak ng-show="diaryPostForm.title.$invalid && !diaryPostForm.title.$pristine"><i class="glyphicon glyphicon-info-sign"></i>请输入文章标题</p>
+                </div>
                 <div class="form-group">
                     <label for="inputTitle" class="col-sm-2 col-sm-offset-1 control-label">标题:</label>
                     <div class="col-sm-6">
@@ -16,7 +18,9 @@
                     </div>
                 </div>
                 <!--日志标签-->
-                <p class="text-center text-danger" ng-cloak  ng-show="diaryPostForm.tag1.$invalid && !diaryPostForm.tag1.$pristine"><i class="glyphicon glyphicon-info-sign"></i>至少输入一个标签,长度不能超过4个字符</p>
+                <div style="height: 20px">
+                    <p class="text-center text-danger" ng-cloak  ng-show="diaryPostForm.tag1.$invalid && !diaryPostForm.tag1.$pristine"><i class="glyphicon glyphicon-info-sign"></i>至少输入一个标签,长度不能超过4个字符</p>
+                </div>
                 <div class="form-group">
                     <label for="inputTag" class="col-sm-2 col-xs-12 col-sm-offset-1 control-label">标签:</label>
                     <div class="col-sm-2 col-xs-4">
@@ -29,6 +33,8 @@
                         <input type="text" name="tag3" class="form-control" ng-model="tag3" ng-maxlength="4" placeholder="标签3">
                     </div>
                 </div>
+                <!-- 日志类型 -->
+                <div style="height: 20px"></div>
                 <div class="form-group">
                     <label for="" class="col-sm-2 col-xs-12 col-sm-offset-1 control-label">类型:</label>
                     <div class="col-sm-6">
@@ -39,7 +45,9 @@
                     </div>
                 </div>
                 <!--日志内容-->
-                <p class="text-center text-danger" ng-cloak ng-show="diaryPostForm.content.$invalid && !diaryPostForm.content.$pristine"><i class="glyphicon glyphicon-info-sign"></i>发表内容不能为空</p>
+                <div style="height: 20px">
+                    <p class="text-center text-danger" ng-cloak ng-show="diaryPostForm.content.$invalid && !diaryPostForm.content.$pristine"><i class="glyphicon glyphicon-info-sign"></i>发表内容不能为空</p>
+                </div>
                 <div class="form-group">
                     <label for="inputContent" class="col-sm-2 col-sm-offset-1 control-label">内容:</label>
                     <div class="col-sm-6">

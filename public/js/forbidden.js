@@ -49,4 +49,20 @@ $(function(){
     }).mouseout(function(){
         $('#blank_reg').hide()
     })
+    // 返回顶部
+    $("#Backtop").css({position:'fixed',bottom:'120px',right:'40px'}).hide();
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 80) {
+            $('#Backtop').fadeIn()
+        }else{
+            $('#Backtop').fadeOut()
+        }
+    });
+    $('#Backtop').click(function(){
+        $("html,body").animate({scrollTop:0},500);
+        $('#Backtop').css({position:'fixed',bottom:'900px',transition:'all 0.5s ease'})
+        setTimeout(function(){
+            $("#Backtop").css({position:'fixed',bottom:'120px',right:'40px'}).hide();
+        },900)
+    })
 })

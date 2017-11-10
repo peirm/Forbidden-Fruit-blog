@@ -31,7 +31,6 @@ function isLogin (req,res,next) {
     next();
 }
 
-/* GET home page. */
 router.get('/',(req, res, next) => {
       res.render('web/index', {
         title: 'Forbidden Fruit',
@@ -65,20 +64,43 @@ router.post('/postDiary',(req,res,next) => {
 router.get('/allArticles',(req,res,next) => {
     if(!req.query.by) {
         Db.findArticlesByConditions(Article,{state:true},(err,articles) => {
-            if(err) {
-                return res.end(err);
+            let every = articles.length;
+            // console.log(every);
+            let limit = 1;
+            let allPage = Math.ceil(every/limit);
+            // console.log(allPage);
+            let pageArr = [];
+            for(let i=1;i<=allPage;i++){
+                pageArr.push(i);
             }
+            /*if(err) {
+                return res.end(err);
+            }*/
             return res.json({success:'success',articles:articles});
         })
     }else if (req.query.by) {
         Db.findArticlesByConditions(Article,{$or:[{type:req.query.by},{tags:req.query.by},{author:req.query.by},{type:req.query.type}],state:true},(err,articles) => {
-            if(err) {
-                return res.end(err);
+            let every = articles.length;
+            // console.log(every);
+            let limit = 1;
+            let allPage = Math.ceil(every/limit);
+            // console.log(allPage);
+            let pageArr = [];
+            for(let i=1;i<=allPage;i++){
+                pageArr.push(i);
             }
+            /*if(err) {
+                return res.end(err);
+            }*/
             res.json({success:'success',articles:articles});
         })
     }
 });
+// 分页
+/*router.post('/allArticlesPage/:page',(req,res,next) => {
+    let page = req.params.page;
+    console.log(page);
+})*/
 //获取所有的标签
 router.get('/allTags',(req,res,next) => {
     Db.getAllTags(Article,function (err,allTags) {
@@ -219,8 +241,6 @@ router.get('/searchArticle',(req,res,next) => {
 });
 
 
-
-
 //用户上传头像
 router.get('/uploadLogo',isLogined,(req,res,next) => {
     res.render('web/uploadLogo');
@@ -228,9 +248,7 @@ router.get('/uploadLogo',isLogined,(req,res,next) => {
 //用户头像上传
 router.post('/uploadLogo',upload.single('logo'),(req,res,next) => {
     let src = 'public/upload/users/logos/small/' + req.file.filename;
-    gm(req.file.destination + req.file.filename)
-        .resize(200,200,'!')
-        .write(src,err => {
+    gm(req.file.destination + req.file.filename).resize(200,200,'!').write(src,err => {
             if(err) {
                 console.log(err);
             }

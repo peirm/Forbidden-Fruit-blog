@@ -196,8 +196,10 @@ footer .src{
   background-color: #FFFFFF;
 }
 footer .copyright {
-  padding:30px 0;
+  padding:50px 0;
   background-color: #F2F2F5;
+  margin-bottom:0;
+    border-radius: 0;
 }
 /*--------注册页面--------日志发表页面--------*/
 .reg_container .title,

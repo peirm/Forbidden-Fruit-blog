@@ -35,7 +35,6 @@ function isLogin (req,res,next) {
     next();
 }
 
-/* GET users listing. */
 const returnUserRouter = (io) => {
   //用户信息页面
   router.get('/',(req, res, next) => {
@@ -77,7 +76,7 @@ const returnUserRouter = (io) => {
     let password = req.body.password;
     let passwordRep = req.body.passwordRep;
     let email = req.body.email;
-    if(!validator.matches(username,/^[a-zA-Z][a-zA-Z0-9_]{4,11}$/)) {
+    if(!validator.matches(username,/^[a-zA-Z][a-zA-Z0-9_]{4,11}$/)) {/* /^[a-zA-Z][a-zA-Z0-9_]{4,11}$/) */
       errors = '用户名5-12个英文字母数字组合';
     }
     if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/) || !validator.isLength(password,6,12)){
@@ -201,6 +200,7 @@ const returnUserRouter = (io) => {
             res.json(articles);
         })
     });
+
   return router
 };
 

@@ -4,10 +4,10 @@
     <form name="talkingPost" ng-submit="processTalkingPost(talkingPost.$valid)" novalidate>
         <div class="error_message">
             <p class="text-danger" ng-cloak ng-show="talkingPost.talking.$invalid && !talkingPost.talking.$pristine">
-                <i class="glyphicon glyphicon-info-sign"></i>请输入合适长度说说内容，长度为6-100
+                <i class="glyphicon glyphicon-info-sign"></i>请输入合适长度说说内容，内容长度为6-800个字符
             </p>
         </div>
-        <textarea class="form-control talking_textarea" name="talking" ng-model="talkingPostData.talking" ng-minlength="6" ng-maxlength="100" rows="4" required placeholder="请输入说说内容"></textarea>
+        <textarea class="form-control talking_textarea" name="talking" ng-model="talkingPostData.talking" ng-minlength="6" ng-maxlength="800" rows="4" required placeholder="请输入说说内容"></textarea>
 
         <div class="form-group text-right">
             <select class="margin_top" ng-model="talkingPostData.state">

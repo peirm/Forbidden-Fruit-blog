@@ -16,31 +16,71 @@ const UserSchema = new Schema ({
     email:String,
     qq:Number,
     phoneNum:Number,
-    comments:{type:String,default:"这个人很懒，什么也没说..."},
+    // 签名
+    comments:{
+        type:String,
+        default:"这个人很懒，什么也没说..."
+    },
     position:String,
     company:String,
     website:String,
-    date:{type:Date,default:Date.now},
-    logo:{type:String,default:"/upload/users/logos/timg.png"},
-    skinId:{type:String,default:'r1gxhplUx'},
-    userSkin:{
-        bodyBg:{type:String,default:'url(/upload/users/userBg/body_bg.jpg) no-repeat 0 0/100%,#F4EAD1;'},
-        userBg:{type:String,default:'/upload/users/userBg/body_bg.jpg'},
-        mainBgc:{type:String,default:'rgba(240,220,200,.4);'}
+    date:{
+        type:Date,
+        default:Date.now
     },
-    group:{type:String,default:"0"},
-    gender:{type:String,default:'男'},
+    logo:{
+        type:String,
+        default:"/upload/users/logos/timg.png"
+    },
+    skinId:{
+        type:String,
+        default:'r1gxhplUx'
+    },
+    userSkin:{
+        bodyBg:{
+            type:String,
+            default:'url(/upload/users/userBg/body_bg.jpg) no-repeat 0 0/100%,#F4EAD1;'
+        },
+        userBg:{
+            type:String,
+            default:'/upload/users/userBg/body_bg.jpg'
+        },
+        mainBgc:{
+            type:String,
+            default:'rgba(240,220,200,.4);'
+        }
+    },
+    group:{
+        type:String,
+        default:"0"
+    },
+    gender:{
+        type:String,
+        default:'男'
+    },
     province:String,
     city:String,
     year:Number,
     openid:String,
-    retrieve_time:{type:Number},
-    collectArticlesNum:{type:Number,default:0},
+    retrieve_time:{
+        type:Number
+    },
+    collectArticlesNum:{
+        type:Number,
+        default:0
+    },
     collectArticlesIds:[],
-    copyArticlesNum:{type:Number,default:0},
+    copyArticlesNum:{
+        type:Number,
+        default:0
+    },
     copyArticlesIds:[],
-    articlesNum:{type:Number,default:0},
+    articlesNum:{
+        type:Number,
+        default:0
+    },
     articlesIds:[]
 });
+
 const User = mongoose.model('User',UserSchema);
 module.exports = User;

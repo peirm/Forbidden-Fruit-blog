@@ -4,7 +4,6 @@ const shortid = require('shortid');
 //引入事件格式化对象
 const moment = require('moment');
 
-
 const ArticleSchema = new Schema ({
     _id:{
         type:String,
@@ -13,29 +12,92 @@ const ArticleSchema = new Schema ({
     },
     title:String,
     stitle:String,
-    type:{type:String,default:"说说"},
-    category:{type:String,ref:'Category'},//文章类别
-    tags:{type:Array},
+    type:{
+        type:String,
+        default:"说说"
+    },
+    //文章类别
+    category:{
+        type:String,
+        ref:'Category'
+    },
+    tags:{
+        type:Array
+    },
     keywords:String,
-    sImg:{type:String,default:"/upload/image/defaultImg.jpg"},
+    sImg:{
+        type:String,
+        default:"/upload/image/defaultImg.jpg"
+    },
     discription:String,
     content:String,
-    date:{type:Date,default:Date.now},
-    updateDate:{type:Date,default:Date.now},//更新时间
-    postDate:{type:Date,default:Date.now},//发布日期
-    author:{type:String,ref:"AdminUser"},//文档作者
-    authorLogo:String,//用户头像
-    state:{type:Boolean,default:true},//是否显示，默认显示
-    isTop:{type:Number,default:0},//是否置顶，默认为不置顶，0为不置顶，1为置顶
-    clickNum:{type:Number,default:0},//查看该文章的用户数
-    collectNum:{type:Number,default:0},//收藏数
-    collectUserIds:[],//收藏该文章的用户ID集合
-    copyNum:{type:Number,default:0},//转发数
-    commentNum:{type:Number,default:0},//评论数
-    commentsIds:[],//评论该文章的用户ID集合
-    likeNum:{type:Number,default:0},//点赞数
-    likeUserIds:[],//点赞该文章的用户的ID集合
-    from:{type:String,default:'1'},//来源 1为原创，2为转载
+    date:{
+        type:Date,
+        default:Date.now
+    },
+    //更新时间
+    updateDate:{
+        type:Date,
+        default:Date.now
+    },
+    //发布日期
+    postDate:{
+        type:Date,
+        default:Date.now
+    },
+    //文档作者
+    author:{
+        type:String,
+        ref:"AdminUser"
+    },
+    //用户头像
+    authorLogo:String,
+    //是否显示，默认显示
+    state:{
+        type:Boolean,
+        default:true
+    },
+    //是否置顶，默认为不置顶，0为不置顶，1为置顶
+    isTop:{
+        type:Number,
+        default:0
+    },
+    //查看该文章的用户数
+    clickNum:{
+        type:Number,
+        default:0
+    },
+    //收藏数
+    collectNum:{
+        type:Number,
+        default:0
+    },
+    //收藏该文章的用户ID集合
+    collectUserIds:[],
+    //转发数
+    copyNum:{
+        type:Number,
+        default:0
+    },
+    //评论数
+    commentNum:{
+        type:Number,
+        default:0
+    },
+    //评论该文章的用户ID集合
+    commentsIds:[],
+    //点赞数
+    likeNum:{
+        type:Number,
+        default:0
+    },
+    //点赞该文章的用户的ID集合
+    likeUserIds:[],
+    //来源 1为原创，2为转载
+    from:{
+        type:String,
+        default:'1'
+    },
 
     //插件相关属性
     repostioryPath:String,//git 知识库地址
