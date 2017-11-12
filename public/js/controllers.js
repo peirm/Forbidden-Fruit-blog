@@ -242,7 +242,7 @@ webApp.controller('rootCtrl',function ($scope,$http) {
         });
 
         // 所有文章的分页
-        /*$('a.mainPage').click(function(event){
+       /* $('a.mainPage').click(function(event){
             let targetA = event.target;
             console.log(targetA)
         })

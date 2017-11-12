@@ -18,15 +18,15 @@
             </ul>
             <form class="navbar-form navbar-left" name="searchForm" ng-submit="processSearch(searchForm.valid)" novalidate>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search" ng-model="searchFormData.search" placeholder="Search Article" required>
-                    <span class="input-group-btn">
+                    <input type="text" class="form-control visible-lg visible-xs" name="search" ng-model="searchFormData.search" placeholder="搜索" required>
+                    <span class="input-group-btn visible-lg visible-xs">
                         <button class="btn btn-default glyphicon glyphicon-search" ng-disabled="searchForm.$invalid" type="submit"></button>
                       </span>
                 </div>
             </form>
             <div id="blank"></div>
-            <div ng-show="user" id="blanks"></div>
-            <ul class="nav navbar-nav navbar-right" id="navbar-daohang">
+            <div ng-show="user" id="blanks" class="visible-lg"></div>
+            <ul class="nav navbar-nav navbar-right visible-lg visible-xs" id="navbar-daohang">
                 <li ng-show="user">
                     <a id="blank_aone" href="/users?username={{user.username}}">{{user.username}}</a>
                 </li>

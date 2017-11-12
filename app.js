@@ -64,22 +64,7 @@ app.use(session({
     saveUninitialized:true
 }));
 
-
-
 // app.use(filter.authUser);
-//存储本地信息
-/*app.use(function (req,res,next) {
-  //针对注册会员
-  res.locals.logined = req.session.logined;
-  res.locals.userInfo = req.session.user;
-  //针对管理员
-  res.locals.adminlogined = req.session.adminlogined;
-  res.locals.adminUserInfo = req.session.adminUserInfo;
-  res.locals.adminNotices = req.session.adminNotices;
-  //指定站点域名
-  res.locals.myDomain = req.headers.host;
-  next();
-});*/
 
 //时间监听
 app.io = io;

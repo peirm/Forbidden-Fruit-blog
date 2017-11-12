@@ -65,4 +65,28 @@ $(function(){
             $("#Backtop").css({position:'fixed',bottom:'120px',right:'40px'}).hide();
         },900)
     })
+    /* 当滚动条下拉到一定程度，源码图片出现 */
+    $("#download_two").hide();
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 1200) {
+            $('#download_two').fadeIn()
+        }else{
+            $('#download_two').fadeOut()
+        }
+    });
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 1300) {
+            $('#download').fadeOut()
+        }else{
+            $('#download').fadeIn()
+        }
+    });
+    /* 当滚动条下拉到一定程度，广告位消失 */
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 100) {
+            $('.advertising ').fadeIn()
+        }else{
+            // $('.advertising ').fadeOut()
+        }
+    });
 })

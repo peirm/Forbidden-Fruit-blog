@@ -30,13 +30,14 @@ function isLogin (req,res,next) {
     }
     next();
 }
-
+// 首页
 router.get('/',(req, res, next) => {
       res.render('web/index', {
         title: 'Forbidden Fruit',
           user:req.session.user
       });
 });
+
 //说说发布
 router.post('/talking',isLogined,(req,res,next) => {
     Db.addOneTalking(Article,User,req,res);
@@ -66,7 +67,7 @@ router.get('/allArticles',(req,res,next) => {
         Db.findArticlesByConditions(Article,{state:true},(err,articles) => {
             let every = articles.length;
             // console.log(every);
-            let limit = 1;
+            let limit = 8;
             let allPage = Math.ceil(every/limit);
             // console.log(allPage);
             let pageArr = [];
@@ -82,7 +83,7 @@ router.get('/allArticles',(req,res,next) => {
         Db.findArticlesByConditions(Article,{$or:[{type:req.query.by},{tags:req.query.by},{author:req.query.by},{type:req.query.type}],state:true},(err,articles) => {
             let every = articles.length;
             // console.log(every);
-            let limit = 1;
+            let limit = 8;
             let allPage = Math.ceil(every/limit);
             // console.log(allPage);
             let pageArr = [];
@@ -97,10 +98,10 @@ router.get('/allArticles',(req,res,next) => {
     }
 });
 // 分页
-/*router.post('/allArticlesPage/:page',(req,res,next) => {
+router.post('/allArticlesPage/:page',(req,res,next) => {
     let page = req.params.page;
     console.log(page);
-})*/
+})
 //获取所有的标签
 router.get('/allTags',(req,res,next) => {
     Db.getAllTags(Article,function (err,allTags) {
@@ -249,36 +250,20 @@ router.get('/uploadLogo',isLogined,(req,res,next) => {
 router.post('/uploadLogo',upload.single('logo'),(req,res,next) => {
     let src = 'public/upload/users/logos/small/' + req.file.filename;
     gm(req.file.destination + req.file.filename).resize(200,200,'!').write(src,err => {
+        if(err) {
+            console.log(err);
+        }
+        Db.uploadLogo(User,Article,Comment,req,(err,user) => {
             if(err) {
-                console.log(err);
+                return res.end(err);
             }
-            Db.uploadLogo(User,Article,Comment,req,(err,user) => {
-                if(err) {
-                    return res.end(err);
-                }
-                req.session.user = user;
-                res.redirect('/users?username=' + req.session.user.username);
-            });
+            req.session.user = user;
+            res.redirect('/users?username=' + req.session.user.username);
         });
-
-    /*gm(req.file.destination + req.file.filename)
-        /!*.resize(100,100,'!')
-        .noProfile()*!/
-        .flip()
-        .magnify()
-        // .rotate('green', 45)
-        // .blur(7, 3)
-        .crop(300, 300, 0, 400)
-        // .edge(3)
-        .write('public/upload/users/logos/small/' + req.file.filename,function (err,file) {
-            if(err) console.log(err);
-            console.log(file);
-        });
-    res.redirect('/users?username=' + req.session.user.username);*/
-    // res.json({success:'success',url:req.file.destination + req.file.filename});
-
+    });
 });
 
+/*
 //新增一款皮肤
 router.get('/addSkin',(req,res,next) => {
     res.render('web/addSkin');
@@ -320,5 +305,6 @@ router.post('/editUserSkin',(req,res,next) => {
         res.json({success:'success',user:user});
     })
 });
+*/
 
 module.exports = router;

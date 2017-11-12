@@ -209,7 +209,7 @@ const DbSet = {
         if(!conditions) {
             conditions = {};
         }
-        Article.find(conditions).sort({updateDate:-1}).limit(10).exec((err,results) => {
+        Article.find(conditions).sort({updateDate:-1}).limit(8).exec((err,results) => {
             if(err) {
                 return callback(err);
             }
@@ -219,21 +219,6 @@ const DbSet = {
             callback(null,results);
         })
     },
-    // 加载全部文章
-    /*findAllArticlesByConditions:(Article,conditions,callback) => {
-        if(!conditions) {
-            conditions = {};
-        }
-        Article.find(conditions).sort({updateDate:-1}).exec((err,results) => {
-            if(err) {
-                return callback(err);
-            }
-            results.forEach(result => {
-                result.content = markdown.toHTML(result.content);
-            });
-            callback(null,results);
-        })
-    },*/
     //获取所有的标签
     getAllTags:(Article,callback) => {
         Article.find({},{tags:1}).sort({updateDate:-1}).exec((err,allTags) => {

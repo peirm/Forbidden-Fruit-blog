@@ -39,7 +39,7 @@ const UserSchema = new Schema ({
     userSkin:{
         bodyBg:{
             type:String,
-            default:'url(/upload/users/userBg/body_bg.jpg) no-repeat 0 0/100%,#F4EAD1;'
+            default:'url(/upload/users/userBg/body_bg4.jpg) no-repeat 0 0/100%,#F4EAD1;'
         },
         userBg:{
             type:String,

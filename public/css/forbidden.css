@@ -1,3 +1,4 @@
+/* 项目样式 */
 .navbar  {
     box-shadow: 0px 0px 10px 2px lightblue inset;
     line-height: 30px;
@@ -26,10 +27,16 @@
     margin: 20px;
 }
 .navbar-form .input-group {
+    border: 1px solid rgba(0,0,0,.1);
     width: 255px;
 }
 .navbar-form .input-group .form-control {
     border-radius: 5px;
+    border:1px solid rgba(0,0,0,.1);
+}
+.navbar-form .input-group button {
+    border:1px solid rgba(0,0,0,.1);
+    border-left: 0;
 }
 .navbar-right {
     margin-right: 5px;
@@ -90,4 +97,40 @@ div {
 }
 #ul_li_login li > p {
     font-size: 14px;
+}
+/* 上传头像下面的背景 */
+#user_title_logo {
+    margin: -200px auto;
+    margin-bottom: 10px;
+    width: 80%;
+    height: 500px;
+    /*border: 1px solid red;*/
+    background: url('../upload/users/images/title.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+#user_title_logo img {
+    height: 500px;
+}
+#download_two {
+    width: 360px;
+    position: fixed;
+    top: 100px;
+}
+/* 左侧栏的动图 */
+.left_side_gif {
+    position: fixed;
+    bottom: 300px;
+    left: 20px;
+}
+/* 广告位 */
+.advertising {
+    background: url('../upload/users/images/advertising.jpg') no-repeat;
+    background-size: 100% 100%;
+    /*position: fixed;*/
+    margin:100px 0 10px 10px;
+    width: 220px;
+    height: 300px;
+    font-size: 20px;
+    color: red;
+    border:1px solid red;
 }

@@ -1,7 +1,7 @@
 <!-- 右侧栏上面 -->
 <!-- 登录后的状态 -->
 <div ng-show="user" class="right_side_user_logined text-center box_shadow_top">
-    <img class="img-responsive" ng-src="{{skin.userBg}}" alt="">
+    <img class="img-responsive" style="border-top-left-radius: 8px;border-top-right-radius: 8px" ng-src="{{skin.userBg}}" alt="">
     <div>
         <a href="/users?username={{user.username}}">
             <p><img class="user_logo img-circle" ng-src="{{user.logo}}" alt=""></p>
@@ -20,13 +20,13 @@
     <p class="text-danger" ng-cloak>{{ errors }}</p>
     <form name="loginForm" ng-submit="rightSideLoginForm(loginForm.$valid)" novalidate>
         <div class="error_message">
-            <p class="text-danger text-center" ng-cloak ng-show="loginForm.email.$invalid && !loginForm.email.$pristine">
-                <i class="glyphicon glyphicon-info-sign"></i> 请填写正确的邮箱地址
+            <p class="text-danger text-center" ng-cloak ng-show="loginForm.username.$invalid && !loginForm.username.$pristine">
+                <i class="glyphicon glyphicon-info-sign"></i> 请填写正确的用户名
             </p>
         </div>
         <div class="input-group ">
             <label class="input-group-addon "><i class="glyphicon glyphicon-user"></i></label>
-            <input type="email" name="email" class="form-control" ng-model="loginFormData.email" ng-pattern="/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/" placeholder="请输入邮箱" required>
+            <input type="username" name="username" class="form-control" ng-model="loginFormData.username" ng-pattern="/^[a-zA-Z][a-zA-Z0-9_]{4,11}$/" placeholder="请输入用户名" required>
         </div>
         <div class="error_message">
             <p class="text-danger text-center" ng-cloak ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">

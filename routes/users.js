@@ -113,11 +113,11 @@ const returnUserRouter = (io) => {
   //用户登录
   router.post('/doLogin',(req,res,next) => {
     let errors;
-    let email = req.body.email;
     let password = req.body.password;
+    let username = req.body.username;
     let newPsd = Db.encrypt(password,settings.encrypto_key);
-    if(!validator.isEmail(email)) {
-        errors = '邮箱格式不正确或者用户名不存在';
+    if(!validator.matches(username,/^[a-zA-Z][a-zA-Z0-9_]{4,11}$/)) {/* /^[a-zA-Z][a-zA-Z0-9_]{4,11}$/) */
+        errors = '用户名5-12个英文字母数字组合';
     }
     if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA_Z]+$)(?!^[_#@]+$).{5,}/) || !validator.isLength(password,6,12)) {
       errors = '密码长度6-12个字符'
@@ -126,7 +126,7 @@ const returnUserRouter = (io) => {
       res.end(errors);
     }else {
       //成功之后
-      User.findOne({email:email,password:newPsd},function (err,user) {
+      User.findOne({username:username,password:newPsd},function (err,user) {
         if(user) {
           //将cookie存入缓存
           // filter.gen_session(user,res);
@@ -135,7 +135,7 @@ const returnUserRouter = (io) => {
             // console.log(req.session);
           res.end('success');
         }else {
-          res.end('邮箱或密码错误');
+          res.end('用户名或密码错误');
         }
       })
     }
